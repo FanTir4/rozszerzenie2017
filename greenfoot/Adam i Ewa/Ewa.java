@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Ewa extends Actor
-{
+{ int koszyczek = 5;
     public void klawisze()
     {
         if(Greenfoot.isKeyDown("right"))
@@ -34,10 +34,24 @@ public class Ewa extends Actor
 
     public void stawianieJablek()
     {
-        int x = getX();
-        int y = getY();
-        Jablko jablko = new Jablko();
-        getWorld().addObject(jablko, x, y);
+        if(Greenfoot.isKeyDown("space") && 
+        !isTouching(Jablko.class) &&
+        koszyczek>0)
+        {   int x = getX();
+            int y = getY();
+            Jablko jablko = new Jablko();
+            getWorld().addObject(jablko, x, y);
+            koszyczek--;
+        }
+
+    }
+
+    public void zrywanieJablek()
+    {
+        if(this.isTouching( Drzewo.class))
+        {
+            koszyczek = 5;
+        }
 
     }
 
@@ -45,5 +59,6 @@ public class Ewa extends Actor
     {
         klawisze();
         stawianieJablek();
+        zrywanieJablek();
     }    
 }
