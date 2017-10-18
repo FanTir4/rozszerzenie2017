@@ -54,11 +54,19 @@ public class Ewa extends Actor
         }
 
     }
+    public void wiekszyKoszyczek()
+    {
+        if(Greenfoot.isKeyDown("k"))
+        {
+            koszyczek=15;
+        }
+    }
 
     public void act() 
     {
         klawisze();
         stawianieJablek();
         zrywanieJablek();
+        wiekszyKoszyczek();
     }    
 }

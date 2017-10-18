@@ -50,12 +50,20 @@ public class Adam extends Actor
             miejsceWBrzuszku = 5;
         }
     }
+    public void wiekszyBrzuszek()
+    {
+        if(Greenfoot.isKeyDown("b"))
+        {
+            miejsceWBrzuszku = 15;
+        }
+    }
 
     public void act() 
     {
         klawisze();
         zjadanieJablek();
         wychodek();
+        wiekszyBrzuszek();
 
     }    
 }
