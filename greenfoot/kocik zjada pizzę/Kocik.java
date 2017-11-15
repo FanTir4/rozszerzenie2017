@@ -15,6 +15,8 @@ public class Kocik extends Actor
     final int STAN_W_LEWO_2 = 4;
 
     int stanKocika = STAN_SIEDZI;
+    int punkty = 0;
+    boolean tanczyc = false;
 
     public void ruch()
     {
@@ -34,6 +36,10 @@ public class Kocik extends Actor
             else
                 stanKocika = STAN_W_LEWO_1;
         }
+        if(!Greenfoot.isKeyDown("left") && !Greenfoot.isKeyDown("right"))
+        {
+            stanKocika = STAN_SIEDZI;
+        }
     }
 
     public void zjadajPizze()
@@ -41,6 +47,8 @@ public class Kocik extends Actor
         if(isTouching(Pizza.class))
         {
             removeTouching(Pizza.class);
+            punkty++;
+            tanczyc = true;
         }
     }
 
@@ -58,11 +66,30 @@ public class Kocik extends Actor
             setImage("cat-walk-left2.png");
 
     }
+    public void pokazPunkty()
+    {
+        World world = getWorld();
+        world.showText("Punkty:" +punkty, 200, 100);
+
+    }
+    public void taniec()
+    {
+        if((punkty % 10 == 1)&&tanczyc)
+        {
+            setImage("cat-dance.png");
+            Greenfoot.delay(10);
+            setImage("cat-dance-2.png");
+            Greenfoot.delay(10);
+            tanczyc = false;
+        }
+    }
 
     public void act() 
     {
         ruch();
         zjadajPizze();
         ustawWyglad();
+        pokazPunkty();
+        taniec();
     }    
 }

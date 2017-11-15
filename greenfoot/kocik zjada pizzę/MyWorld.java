@@ -29,7 +29,8 @@ public class MyWorld extends World
         Kocik kocik = new Kocik();
         addObject(kocik,306,367);
         kocik.setLocation(328,557);
-    }
+    }
+
 
     public void zrobPizze()
     {
